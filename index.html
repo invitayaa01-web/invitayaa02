@@ -9,7 +9,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9ecf, #ff6fa5);
+
+    /* 💗 FONDO FLARE */
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), transparent 40%),
+        radial-gradient(circle at 70% 20%, rgba(255,182,193,0.6), transparent 50%),
+        linear-gradient(135deg, #ffd6e8, #ffb6d9, #ff9fcd);
+
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,13 +23,14 @@ body {
     overflow: hidden;
 }
 
+/* TARJETA */
 .card {
     background: rgba(255,255,255,0.95);
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 25px;
     text-align: center;
     width: 320px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
     position: relative;
 }
 
@@ -39,6 +46,7 @@ body {
     font-size: 14px;
 }
 
+/* BOTONES */
 .buttons {
     position: relative;
     margin-top: 20px;
@@ -47,7 +55,7 @@ body {
 
 button {
     padding: 10px 18px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
     font-weight: bold;
@@ -55,7 +63,7 @@ button {
 }
 
 #yes {
-    background: #2b2b4f;
+    background: #ff4f9a;
     color: white;
 }
 
@@ -67,6 +75,7 @@ button {
 
 h1 {
     margin: 0;
+    color: #ff2e86;
 }
 
 /* CONFETI */
@@ -74,9 +83,8 @@ h1 {
     position: fixed;
     width: 8px;
     height: 8px;
-    background: red;
     top: -10px;
-    animation: fall 2s linear forwards;
+    animation: fall 2.5s linear forwards;
 }
 
 @keyframes fall {
@@ -93,7 +101,7 @@ h1 {
 <!-- PANTALLA 1 -->
 <div class="card" id="screen1">
     <h1>Hey Ale 💌</h1>
-    <p style="font-size:14px;">anto tiene una pregunta...</p>
+    <p style="font-size:14px;">antho tiene una pregunta...</p>
 
     <div class="bubble">
         ¿Quieres ser mi San Valentín? (no acepto no por respuesta...)
@@ -101,7 +109,7 @@ h1 {
 
     <div class="buttons">
         <button id="no">No</button>
-        <button id="yes">Sí, porfa</button>
+        <button id="yes">Sí, obvio</button>
     </div>
 
     <p style="font-size:12px; margin-top:40px;">¿Segurísima?</p>
@@ -109,12 +117,11 @@ h1 {
 
 <!-- PANTALLA 2 -->
 <div class="card hidden" id="screen2">
-    <h1>SÍÍ 💗</h1>
-    <p>Sabía que ibas a decir que sí :)</p>
+    <h1>Si 💗</h1>
+    <p>Sabía que ibas a decir que sí <3</p>
 
-    <!-- TU IMAGEN LOCAL -->
     <img src="mono.jpg" width="200"
-         style="border-radius:15px; margin-top:15px;">
+         style="border-radius:20px; margin-top:15px;">
 </div>
 
 <script>
@@ -145,18 +152,18 @@ yesBtn.addEventListener("click", function() {
     lanzarConfeti();
 });
 
-/* Confeti suave */
+/* Confeti rosado aesthetic */
 function lanzarConfeti() {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
         let confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
         confetti.style.left = Math.random() * 100 + "vw";
         confetti.style.backgroundColor = 
-            `hsl(${Math.random() * 360}, 100%, 60%)`;
+            `hsl(${Math.random() * 40 + 320}, 100%, 70%)`;
 
         confetti.style.animationDuration = 
-            (Math.random() * 2 + 1) + "s";
+            (Math.random() * 2 + 1.5) + "s";
 
         document.body.appendChild(confetti);
 
