@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Valentín</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ff6fa5);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.bubble {
+    background: #fff3cd;
+    padding: 12px;
+    border-radius: 15px;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.buttons {
+    position: relative;
+    margin-top: 20px;
+    height: 50px;
+}
+
+button {
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#yes {
+    background: #2b2b4f;
+    color: white;
+}
+
+#no {
+    background: #eee;
+    position: absolute;
+    left: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* CONFETI */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: red;
+    top: -10px;
+    animation: fall 2s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA 1 -->
+<div class="card" id="screen1">
+    <h1>Hey Ale 💌</h1>
+    <p style="font-size:14px;">anto tiene una pregunta...</p>
+
+    <div class="bubble">
+        ¿Quieres ser mi San Valentín? (no acepto no por respuesta...)
+    </div>
+
+    <div class="buttons">
+        <button id="no">No</button>
+        <button id="yes">Sí, porfa</button>
+    </div>
+
+    <p style="font-size:12px; margin-top:40px;">¿Segurísima?</p>
+</div>
+
+<!-- PANTALLA 2 -->
+<div class="card hidden" id="screen2">
+    <h1>SÍÍ 💗</h1>
+    <p>Sabía que ibas a decir que sí :)</p>
+
+    <!-- TU IMAGEN LOCAL -->
+    <img src="mono.jpg" width="200"
+         style="border-radius:15px; margin-top:15px;">
+</div>
+
+<script>
+let noBtn = document.getElementById("no");
+let yesBtn = document.getElementById("yes");
+let screen1 = document.getElementById("screen1");
+let screen2 = document.getElementById("screen2");
+
+let scale = 1;
+
+/* NO se mueve */
+noBtn.addEventListener("mouseover", function() {
+    let x = Math.random() * 200 - 100;
+    let y = Math.random() * 100 - 50;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+/* Mientras presiona NO crece el SÍ */
+noBtn.addEventListener("mousedown", function() {
+    scale += 0.4;
+    yesBtn.style.transform = `scale(${scale})`;
+});
+
+/* Cambio de pantalla + confeti */
+yesBtn.addEventListener("click", function() {
+    screen1.classList.add("hidden");
+    screen2.classList.remove("hidden");
+    lanzarConfeti();
+});
+
+/* Confeti suave */
+function lanzarConfeti() {
+    for (let i = 0; i < 40; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = 
+            `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+        confetti.style.animationDuration = 
+            (Math.random() * 2 + 1) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 3000);
+    }
+}
+</script>
+
+</body>
+</html>
